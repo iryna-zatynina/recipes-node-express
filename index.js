@@ -1,7 +1,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const homeRoutes = require('./routes/home')
-const recipesRoutes = require('./routes/recipes')
+const recipesRoutes = require('./routes/dishes')
 const addRoutes = require('./routes/add')
 
 const app = express()
@@ -20,7 +20,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 app.use("/", homeRoutes)
-app.use("/recipes", recipesRoutes)
+app.use("/dishes", recipesRoutes)
 app.use("/add", addRoutes)
 
 

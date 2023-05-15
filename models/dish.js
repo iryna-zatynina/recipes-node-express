@@ -2,7 +2,7 @@ const {v4: uuidv4} = require('uuid')
 const fs = require('fs')
 const path = require('path')
 
-class Recipe {
+class Dish {
     constructor(title, price, img) {
         this.title = title
         this.price = price
@@ -20,13 +20,13 @@ class Recipe {
     }
 
     async save() {
-        const recipes = await Recipe.getAll()
-        recipes.push(this.toJSON())
+        const dishes = await Dish.getAll()
+        dishes.push(this.toJSON())
 
         return new Promise((resolve, reject) => {
             fs.writeFile(
-                path.join(__dirname, '..', 'data', 'recipes.json'),
-                JSON.stringify(recipes),
+                path.join(__dirname, '..', 'data', 'dishes.json'),
+                JSON.stringify(dishes),
                 (err) => {
                     if (err) {
                         reject(err)
@@ -41,7 +41,7 @@ class Recipe {
     static getAll() {
         return new Promise((resolve, reject) => {
             fs.readFile(
-                path.join(__dirname, '..', 'data', 'recipes.json'),
+                path.join(__dirname, '..', 'data', 'dishes.json'),
                 'utf-8',
                 (err, content) => {
                     if (err) {
@@ -55,6 +55,11 @@ class Recipe {
             )
         })
     }
+
+    static async getById(id) {
+        const dishes = await Dish.getAll()
+        return dishes.find(r => r.id === id)
+    }
 }
 
-module.exports = Recipe
+module.exports = Dish

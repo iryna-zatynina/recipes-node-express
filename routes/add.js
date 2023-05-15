@@ -1,5 +1,5 @@
 const {Router} = require('express')
-const Recipe = require('../models/recipe')
+const Dish = require('../models/dish')
 const router = Router()
 
 router.get('/', (req, res) => {
@@ -10,9 +10,9 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    const recipe = new Recipe(req.body.title, req.body.price, req.body.img)
+    const recipe = new Dish(req.body.title, req.body.price, req.body.img)
     await recipe.save()
-    res.redirect('/recipes')
+    res.redirect('/dishes')
 })
 
 module.exports = router
