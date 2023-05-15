@@ -19,6 +19,26 @@ class Dish {
         }
     }
 
+    static async update(dish) {
+        const dishes = await Dish.getAll()
+        const idx = dishes.findIndex(d => d.id === dish.id)
+        dishes[idx] = dish
+
+        return new Promise((resolve, reject) => {
+            fs.writeFile(
+                path.join(__dirname, '..', 'data', 'dishes.json'),
+                JSON.stringify(dishes),
+                (err) => {
+                    if (err) {
+                        reject(err)
+                    } else {
+                        resolve()
+                    }
+                }
+            )
+        })
+    }
+
     async save() {
         const dishes = await Dish.getAll()
         dishes.push(this.toJSON())

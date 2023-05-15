@@ -1,0 +1,20 @@
+<h1>Edit {{dish.title}}</h1>
+<form action="/dishes/edit" method="post">
+    <div class="input-field">
+        <input id="text" name="title" type="text" class="validate" required value="{{dish.title}}">
+        <label for="text">Dish title</label>
+        <span class="helper-text" data-error="type in title"></span>
+    </div>
+    <div class="input-field">
+        <input id="price" name="price" type="number" class="validate" required min="1" value="{{dish.price}}">
+        <label for="price">Price</label>
+        <span class="helper-text" data-error="type in price"></span>
+    </div>
+    <div class="input-field">
+        <input id="img" name="img" type="text" class="validate" required value="{{dish.img}}">
+        <label for="img">Picture url</label>
+        <span class="helper-text" data-error="type in url"></span>
+    </div>
+    <input type="hidden" name="id" value="{{dish.id}}">
+    <button class="btn btn-primary">Edit dish</button>
+</form>
