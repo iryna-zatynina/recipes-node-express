@@ -1,0 +1,19 @@
+<h1>Add recipe</h1>
+<form action="/add" method="post">
+    <div class="input-field">
+        <input id="text" name="title" type="text" class="validate" required>
+        <label for="text">Recipe title</label>
+        <span class="helper-text" data-error="type in title"></span>
+    </div>
+    <div class="input-field">
+        <input id="price" name="price" type="number" class="validate" required min="1">
+        <label for="price">Price</label>
+        <span class="helper-text" data-error="type in price"></span>
+    </div>
+    <div class="input-field">
+        <input id="img" name="img" type="text" class="validate" required>
+        <label for="img">Picture url</label>
+        <span class="helper-text" data-error="type in url"></span>
+    </div>
+    <button class="btn btn-primary">Add recipe</button>
+</form>
