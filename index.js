@@ -4,6 +4,7 @@ const homeRoutes = require('./routes/home')
 const dishesRoutes = require('./routes/dishes')
 const addRoutes = require('./routes/add')
 const cartRoutes = require('./routes/cart')
+const path = require("path");
 
 const app = express()
 
@@ -16,7 +17,7 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views', 'pages')
 
-app.use(express.static('public'))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
