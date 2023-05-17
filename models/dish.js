@@ -21,6 +21,7 @@ class Dish {
 
     static async update(dish) {
         const dishes = await Dish.getAll()
+
         const idx = dishes.findIndex(d => d.id === dish.id)
         dishes[idx] = dish
 
@@ -78,7 +79,7 @@ class Dish {
 
     static async getById(id) {
         const dishes = await Dish.getAll()
-        return dishes.find(r => r.id === id)
+        return dishes.find(d => d.id === id)
     }
 }
 

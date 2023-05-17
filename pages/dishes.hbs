@@ -12,14 +12,18 @@
                         <span class="card-title">{{title}}</span>
                         <p class="price">{{price}}</p>
                     </div>
-                    <div class="card-action">
+                    <div class="card-action actions">
                         <a href="/dishes/{{id}}">Details</a>
                         <a href="/dishes/{{id}}/edit?allow=true">Edit</a>
+                        <form action="/cart/add" method="post">
+                            <input type="hidden" name="id" value="{{id}}">
+                            <button type="submit" class="btn btn-primary">Add to Cart</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     {{/each}}
 {{else}}
-    <p>there are no recipes</p>
+    <p>there are no dishes</p>
 {{/if}}

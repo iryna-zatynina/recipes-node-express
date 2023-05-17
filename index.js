@@ -1,8 +1,9 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const homeRoutes = require('./routes/home')
-const recipesRoutes = require('./routes/dishes')
+const dishesRoutes = require('./routes/dishes')
 const addRoutes = require('./routes/add')
+const cartRoutes = require('./routes/cart')
 
 const app = express()
 
@@ -20,8 +21,9 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 app.use("/", homeRoutes)
-app.use("/dishes", recipesRoutes)
+app.use("/dishes", dishesRoutes)
 app.use("/add", addRoutes)
+app.use("/cart", cartRoutes)
 
 
 
