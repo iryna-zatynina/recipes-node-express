@@ -1,5 +1,5 @@
 <h1>Edit {{dish.title}}</h1>
-<form action="/dishes/edit" method="post">
+<form action="/dishes/edit" method="post" class="edit-form">
     <div class="input-field">
         <input id="text" name="title" type="text" class="validate" required value="{{dish.title}}">
         <label for="text">Dish title</label>
@@ -16,5 +16,9 @@
         <span class="helper-text" data-error="type in url"></span>
     </div>
     <input type="hidden" name="id" value="{{dish.id}}">
-    <button class="btn btn-primary">Edit dish</button>
+    <button type="submit" class="btn btn-primary">Edit dish</button>
+</form>
+<form action="/dishes/remove" method="post">
+    <input type="hidden" name="id" value="{{dish.id}}">
+    <button class="btn red">Delete dish</button>
 </form>

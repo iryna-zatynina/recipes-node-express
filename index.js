@@ -5,12 +5,16 @@ const dishesRoutes = require('./routes/dishes')
 const addRoutes = require('./routes/add')
 const cartRoutes = require('./routes/cart')
 const path = require("path");
+const mongoose = require('mongoose');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+const handlebars = require('handlebars')
 
 const app = express()
 
 const hbs = exphbs.create({
     defaultLayout: 'main',
-    extname: 'hbs'
+    extname: 'hbs',
+    handlebars: allowInsecurePrototypeAccess(handlebars)
 })
 
 app.engine('hbs', hbs.engine)
@@ -26,12 +30,25 @@ app.use("/dishes", dishesRoutes)
 app.use("/add", addRoutes)
 app.use("/cart", cartRoutes)
 
-
-
-
-
 const PORT = process.env.PORT || 3000
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`)
-})
+const name = "ira"
+const password = "cJKgZVrch0YWw1xq"
+const url = "mongodb+srv://ira:cJKgZVrch0YWw1xq@cluster0.zlizxf3.mongodb.net/menu"
+
+
+
+async function start() {
+    try {
+        await mongoose.connect(url, {useNewUrlParser: true});
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`)
+        })
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+start()
+
+
