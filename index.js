@@ -8,6 +8,7 @@ const path = require("path");
 const mongoose = require('mongoose');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
 const handlebars = require('handlebars')
+const User = require('./models/user')
 
 const app = express()
 
@@ -21,6 +22,15 @@ app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views', 'pages')
 
+app.use(async (req, res, next) => {
+    try {
+        req.user = await User.findById('6466071bcc7dc3b6df89c596')
+        next()
+    } catch (e) {
+        console.log(e)
+    }
+})
+
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
@@ -32,15 +42,20 @@ app.use("/cart", cartRoutes)
 
 const PORT = process.env.PORT || 3000
 
-const name = "ira"
-const password = "cJKgZVrch0YWw1xq"
-const url = "mongodb+srv://ira:cJKgZVrch0YWw1xq@cluster0.zlizxf3.mongodb.net/menu"
-
-
 
 async function start() {
     try {
         await mongoose.connect(url, {useNewUrlParser: true});
+        const candidate = await User.findOne()
+
+        if (!candidate) {
+            const user = new User({
+                email: 'ira.zat1997@gmail.com',
+                name: 'Iryna',
+                cart: {items: []}
+            })
+            await user.save()
+        }
         app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}`)
         })

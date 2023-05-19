@@ -32,8 +32,10 @@ router.post('/', async (req, res) => {
     const dish = new Dish({
         title: req.body.title,
         price: req.body.price,
-        img: req.body.img
+        img: req.body.img,
+        userId: req.user
     })
+    console.log(req.user)
 
     try {
         await dish.save()
