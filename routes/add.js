@@ -1,22 +1,3 @@
-// const {Router} = require('express')
-// const Dish = require('../models/dish')
-// const router = Router()
-//
-// router.get('/', (req, res) => {
-//     res.render('add', {
-//         title: "Add",
-//         isAdd: true
-//     })
-// })
-//
-// router.post('/', async (req, res) => {
-//     const dish = new Dish(req.body.title, req.body.price, req.body.img)
-//     await dish.save()
-//     res.redirect('/dishes')
-// })
-//
-// module.exports = router
-
 const {Router} = require('express')
 const Dish = require('../models/dish')
 const router = Router()
@@ -35,8 +16,6 @@ router.post('/', async (req, res) => {
         img: req.body.img,
         userId: req.user
     })
-    console.log(req.user)
-
     try {
         await dish.save()
         res.redirect('/dishes')

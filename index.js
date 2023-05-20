@@ -24,7 +24,7 @@ app.set('views', 'pages')
 
 app.use(async (req, res, next) => {
     try {
-        req.user = await User.findById('6466071bcc7dc3b6df89c596')
+        req.user = await User.findById('6467473c26ef3e3f5056b7a9')
         next()
     } catch (e) {
         console.log(e)
@@ -45,6 +45,7 @@ const PORT = process.env.PORT || 3000
 
 async function start() {
     try {
+
         await mongoose.connect(url, {useNewUrlParser: true});
         const candidate = await User.findOne()
 
