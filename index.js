@@ -4,6 +4,7 @@ const homeRoutes = require('./routes/home')
 const dishesRoutes = require('./routes/dishes')
 const addRoutes = require('./routes/add')
 const cartRoutes = require('./routes/cart')
+const ordersRoutes = require('./routes/orders')
 const path = require("path");
 const mongoose = require('mongoose');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
@@ -39,6 +40,7 @@ app.use("/", homeRoutes)
 app.use("/dishes", dishesRoutes)
 app.use("/add", addRoutes)
 app.use("/cart", cartRoutes)
+app.use("/orders", ordersRoutes)
 
 const PORT = process.env.PORT || 3000
 
